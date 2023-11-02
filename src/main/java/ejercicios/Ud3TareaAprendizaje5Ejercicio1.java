@@ -1,4 +1,4 @@
-package tareaAprendizaje4;
+package ejercicios;
 
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -7,7 +7,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-public class Ejercicio1 {
+public class Ud3TareaAprendizaje5Ejercicio1 {
 
     public static void main(String[] args) throws SQLException {
 

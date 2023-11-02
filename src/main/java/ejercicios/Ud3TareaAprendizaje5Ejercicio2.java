@@ -1,43 +1,29 @@
-package tareaAprendizaje4;
+package ejercicios;
 
 import com.zaxxer.hikari.HikariDataSource;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDateTime;
 
-public class Ejercicio3 {
+public class Ud3TareaAprendizaje5Ejercicio2 {
 
     public static void main(String[] args) throws SQLException {
-
         DataSource ds = createDataSource();
 
         try (Connection connection = ds.getConnection()) {
 
-            try (PreparedStatement stmt = connection.prepareStatement("update " +
-                    "users set first_name = concat(first_name,?) where id >= ? ")) {
-
-                stmt.setString(1, "!");
-                stmt.setInt(2, 2);
-
-                int updatedRows = stmt.executeUpdate();
-
-                System.out.println("I just updated " + updatedRows + " rows");
-            }
-
-            try (PreparedStatement stmt = connection
-                    .prepareStatement("select * " + "from users")) {
+            try (PreparedStatement stmt = connection.prepareStatement("select * " +
+                    "from users")) {
 
                 ResultSet resultSet = stmt.executeQuery();
                 while (resultSet.next()) {
-                    Integer id = resultSet.getInt("id");
+                    int id = resultSet.getInt("id");
                     String firstName = resultSet.getString("first_name");
                     String lastName = resultSet.getString("last_name");
                     LocalDateTime registrationDate = resultSet.getObject(
                             "registration_date", LocalDateTime.class);
+
                     System.out.println("Found user: " + id + " | " + firstName +
                             " | " + lastName + " | " + registrationDate);
                 }
